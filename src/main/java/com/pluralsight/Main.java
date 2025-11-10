@@ -1,12 +1,10 @@
 package com.pluralsight;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        Pizza pizza1 = new Pizza("12\"", "Thin", true);
-
-        pizza1.addTopping("Pepperoni");
-
-        pizza1.displayPizza();
+        Scanner scanner = new Scanner(System.in);
 
     }
 }
