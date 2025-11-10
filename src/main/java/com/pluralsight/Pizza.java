@@ -78,7 +78,7 @@ public class Pizza {
     }
 
     //base price for size
-    public double getBasePrice(){
+    public double getPrice(){
         double price = 0;
 
         if(size.equals("8\"")){
@@ -111,6 +111,6 @@ public class Pizza {
         }
         System.out.println("Toppings: " + toppings);
 
-        System.out.println("Total price: $" + getBasePrice());
+        System.out.println("Total price: $" + getPrice());
     }
 }
