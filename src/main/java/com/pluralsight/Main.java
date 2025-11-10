@@ -7,14 +7,16 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Order order = new Order();
 
-        System.out.println("Welcome to Cherry's Pineapple Pizza House");
+        System.out.println("Cherry's Pineapple Pizza House!");
+        System.out.println("Welcome to the only Pineapple pizza shop in Texas! Let's get you a pineapple pizza!!");
 
         boolean running = true;
 
         while (running) {
+            //Home Screen
             System.out.println("\nHome Menu:");
-            System.out.println("1. New Order");
-            System.out.println("0. Exit");
+            System.out.println("1) New Order");
+            System.out.println("0) Exit");
             System.out.println("Enter choice: ");
             String choice = scanner.nextLine();
 
@@ -22,23 +24,27 @@ public class Main {
                 boolean ordering = true;
 
                 while (ordering) {
+                    //Order menu
                     System.out.println("\nOrder Menu");
-                    System.out.println("1. Add Pizza");
-                    System.out.println("2. Add Drink");
-                    System.out.println("3. Add Garlic Knots");
-                    System.out.println("4. Checkout");
-                    System.out.println("0. Cancel order");
+                    System.out.println("1) Add Pizza");
+                    System.out.println("2) Add Drink");
+                    System.out.println("3) Add Garlic Knots");
+
+                    System.out.println("4) Checkout");
+                    System.out.println("0) Cancel order");
                     System.out.println("Enter choice: ");
                     String orderChoice = scanner.nextLine();
 
                     if (orderChoice.equals("1")) {
-                        //add a Pizza
+                        //Pizza size
                         System.out.println("Enter pizza size (8\", 12\", 16\"): ");
                         String size = scanner.nextLine();
 
+                        //Crust type
                         System.out.println("Enter crust type (Thin, Regular, Thick, Cauliflower): ");
                         String crust = scanner.nextLine();
 
+                        //Stuffed
                         System.out.println("Would you like stuffed crust? (yes/no): ");
                         boolean stuffed = scanner.nextLine().equalsIgnoreCase("yes");
 
