@@ -29,7 +29,7 @@ public class Pizza {
             //extra topping
             boolean extra = t.contains("extra");
 
-            //meat
+            //meat toppings
             if (t.equalsIgnoreCase("pepperoni") || t.equalsIgnoreCase("sausage") || t.equalsIgnoreCase("ham") || t.equalsIgnoreCase("bacon") || t.equalsIgnoreCase("chicken") || t.equalsIgnoreCase("meatball")) {
                 if (size.equals("8\"")) {
                     if (extra) {
@@ -51,7 +51,7 @@ public class Pizza {
                     }
                 }
 
-                //cheese
+                //cheese toppings
             } else if (t.equalsIgnoreCase("mozzarella") || t.equalsIgnoreCase("parmesan") || t.equalsIgnoreCase("ricotta") || t.equalsIgnoreCase("goat cheese") || t.equalsIgnoreCase("buffalo")) {
                 if (size.equals("8\"")) {
                     if (extra) {
@@ -100,17 +100,19 @@ public class Pizza {
      return price;
     }
 
+    //pizza summary
+    public String getSummary() {
+        String summary = "Pizza Size: " + size + "\n" + "Crust Type: " + crustType + "\n" + "Stuffed Crust: ";
+        if (stuffedCrust) {
+            summary += "Yes\n";
+        } else {
+            summary += "No\n";
+        }
+        summary += "Toppings: " + toppings + "\n" + "Total Price: $" + getPrice();
+        return summary;
+    }
     //pizza details
     public void displayPizza() {
-        System.out.println("Pizza Size: " + size);
-        System.out.println("Crust Type: " + crustType);
-        if (stuffedCrust) {
-            System.out.println("Stuffed Crust: Yes");
-        } else {
-            System.out.println("Stuffed Crust: No");
-        }
-        System.out.println("Toppings: " + toppings);
-
-        System.out.println("Total price: $" + getPrice());
+        System.out.println(getSummary());
     }
 }

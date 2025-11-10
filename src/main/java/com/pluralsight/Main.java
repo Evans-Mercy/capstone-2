@@ -5,61 +5,107 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
         Order order = new Order();
-        System.out.println("Welcome to my Pizza shop");
 
-        //add a Pizza
-        System.out.println("Enter pizza size (8\", 12\", 16\"): ");
-        String size = scanner.nextLine();
+        System.out.println("Welcome to Cherry's Pineapple Pizza House");
 
-        System.out.println("Enter crust type (Thin, Regular, Thick, Cauliflower): ");
-        String crust = scanner.nextLine();
+        boolean running = true;
 
-        System.out.println("Would you like stuffed crust? (yes/no): ");
-        boolean stuffed = scanner.nextLine().equalsIgnoreCase("yes");
+        while (running) {
+            System.out.println("\nHome Menu:");
+            System.out.println("1. New Order");
+            System.out.println("0. Exit");
+            System.out.println("Enter choice: ");
+            String choice = scanner.nextLine();
 
-        Pizza pizza = new Pizza(size, crust, stuffed);
+            if (choice.equals("1")) {
+                boolean ordering = true;
 
-        //ask for toppings
-        System.out.println("Would you like to add toppings? (yes/no): ");
-        String addToppings = scanner.nextLine();
+                while (ordering) {
+                    System.out.println("\nOrder Menu");
+                    System.out.println("1. Add Pizza");
+                    System.out.println("2. Add Drink");
+                    System.out.println("3. Add Garlic Knots");
+                    System.out.println("4. Checkout");
+                    System.out.println("0. Cancel order");
+                    System.out.println("Enter choice: ");
+                    String orderChoice = scanner.nextLine();
 
-        if (addToppings.equalsIgnoreCase("yes")){
-            System.out.println("Enter toppings:" );
+                    if (orderChoice.equals("1")) {
+                        //add a Pizza
+                        System.out.println("Enter pizza size (8\", 12\", 16\"): ");
+                        String size = scanner.nextLine();
 
-            String toppingsInput = scanner.nextLine();
-            String[] toppings = toppingsInput.split(",");
-            for (String topping : toppings) {
-                pizza.addTopping(topping);
+                        System.out.println("Enter crust type (Thin, Regular, Thick, Cauliflower): ");
+                        String crust = scanner.nextLine();
+
+                        System.out.println("Would you like stuffed crust? (yes/no): ");
+                        boolean stuffed = scanner.nextLine().equalsIgnoreCase("yes");
+
+                        Pizza pizza = new Pizza(size, crust, stuffed);
+
+                        //ask for toppings
+                        System.out.println("Would you like to add toppings? (yes/no): ");
+                        String addToppings = scanner.nextLine();
+
+                        if (addToppings.equalsIgnoreCase("yes")) {
+                            System.out.println("Enter toppings:");
+
+                            String toppingsInput = scanner.nextLine();
+                            String[] toppings = toppingsInput.split(",");
+                            for (String topping : toppings) {
+                                pizza.addTopping(topping);
+                            }
+                        }
+
+                        order.addPizza(pizza);
+                        System.out.println("Pizza added successfully!");
+
+                    } else if (orderChoice.equals("2")) {
+                        //add a drink
+                        System.out.println("Enter drink size (Small, Medium, Large): ");
+                        String drinkSize = scanner.nextLine();
+
+                        System.out.println("Enter drink flavor: ");
+                        String drinkFlavor = scanner.nextLine();
+
+                        Drink drink = new Drink(drinkSize, drinkFlavor);
+                        order.addDrink(drink);
+                        System.out.println("Drink added successfully!");
+
+                    } else if (orderChoice.equals("3")) {
+                        //add garlic knots
+                        System.out.println("Would you like to add Garlic Knots? (Yes/No): ");
+                        String addKnots = scanner.nextLine();
+
+                        if (addKnots.equalsIgnoreCase("yes")) {
+                            GarlicKnots gk = new GarlicKnots();
+                            order.addGarlicKnots(gk);
+                            System.out.println("Garlic Knots added successfully!");
+                        }
+                    } else if (orderChoice.equals("4")){
+                        //checkout
+                        System.out.println("\n Please confirm your order:");
+                        order.displayOrder();
+                        ordering = false;
+
+                    } else if (orderChoice.equals("0")) {
+                        //cancel order
+                        System.out.println("Order cancelled.");
+                        ordering = false;
+
+                    } else {
+                        System.out.println("Invalid choice, try again.");
+                    }
+
+                    }
+                } else if (choice.equals("0")) {
+                System.out.println("Thank you for visiting Cherry's Pineapple Pizza House. Enjoy and please leave a review:) See you soon!");
+                running = false;
+
+            } else {
+                System.out.println("Invalid choice, try again.");
             }
         }
-
-        order.addPizza(pizza);
-        System.out.println("Pizza added successfully!");
-
-        //add a drink
-        System.out.println("Enter drink size (Small, Medium, Large): ");
-        String drinkSize = scanner.nextLine();
-
-        System.out.println("Enter drink flavor: ");
-        String drinkFlavor = scanner.nextLine();
-
-        Drink drink = new Drink(drinkSize, drinkFlavor);
-        order.addDrink(drink);
-        System.out.println("Drink added successfully!");
-
-        //add garlic knots
-        System.out.println("Would you like to add Garlic Knots? (Yes/No): ");
-        String addKnots = scanner.nextLine();
-
-        if (addKnots.equalsIgnoreCase("yes")) {
-           GarlicKnots gk = new GarlicKnots();
-           order.addGarlicKnots(gk);
-            System.out.println("Garlic Knots added successfully!");
-        }
-
-        order.displayOrder();
-
     }
 }

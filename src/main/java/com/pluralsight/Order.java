@@ -19,6 +19,19 @@ public class Order {
         this.garlicKnots = new ArrayList<>();
     }
 
+    //getters
+    public ArrayList<Pizza> getPizzas() {
+        return pizzas;
+    }
+
+    public ArrayList<Drink> getDrinks() {
+        return drinks;
+    }
+
+    public ArrayList<GarlicKnots> getGarlicKnots() {
+        return garlicKnots;
+    }
+
     //add pizza
     public void addPizza(Pizza pizza){
         pizzas.add(pizza);
@@ -35,7 +48,7 @@ public class Order {
     }
 
     //calculate total price
-    public double getPrice(){
+    public double getTotalPrice(){
         double total = 0;
         for(Pizza p : pizzas) {
             total += p.getPrice();
@@ -50,18 +63,26 @@ public class Order {
     }
 
     //display order details
-    public void displayOrder(){
-        System.out.println("--------------ORDER DETAILS--------------");
+    public String getOrderSummary(){
+        String summary = "--------------ORDER DETAILS--------------\n";
         for (Pizza p : pizzas) {
-            p.displayPizza();
+            summary += p.getSummary() + "\n\n";
         }
         for (Drink d : drinks) {
-            d.displayDrink();
+            summary += d.getSummary() + "\n\n";
+
         }
         for (GarlicKnots gk: garlicKnots) {
-            gk.displayGarlicKnots();
+            summary += gk.getSummary() + "\n\n";
         }
-        System.out.println("-----------------------------------------");
-        System.out.println("Total Price: " + this.getPrice());
+        summary += "-----------------------------------------";
+        summary += "Total Price: " + this.getTotalPrice();
+
+        return summary;
+    }
+
+    //display order
+    public void  displayOrder() {
+        System.out.println(getOrderSummary());
     }
 }

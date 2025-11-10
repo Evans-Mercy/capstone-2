@@ -9,20 +9,38 @@ public class Drink {
         this.flavor = flavor;
     }
 
-    //get drink price
-    public double getPrice() {
-        if (size.equals("Small")) {
-            return 2.00;
-        } else if (size.equals("Medium")) {
-            return 2.50;
-        } else if (size.equals("Large")) {
-            return 3.00;
-        } else
-            return 0;
+    //getters
+    public String getSize() {
+        return size;
     }
 
+    public String getFlavor() {
+        return flavor;
+    }
+
+    //get drink price
+    public double getPrice() {
+        double price = 0;
+
+        if (size.equalsIgnoreCase("Small")) {
+            return 2.00;
+        } else if (size.equalsIgnoreCase("Medium")) {
+            return 2.50;
+        } else if (size.equalsIgnoreCase("Large")) {
+            return 3.00;
+        } else
+            return price;
+    }
+
+    //summary
+    public String getSummary() {
+        String summary = size + " - " + flavor + " $" + getPrice();
+        return summary;
+    }
+
+    //Display drink
     public void displayDrink() {
-        System.out.println(size + " - " + flavor + " $" + getPrice());
+        System.out.println(getSummary());
     }
 }
 
