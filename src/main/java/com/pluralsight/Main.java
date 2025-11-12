@@ -29,7 +29,6 @@ public class Main {
                     System.out.println("1) Add Pizza");
                     System.out.println("2) Add Drink");
                     System.out.println("3) Add Garlic Knots");
-
                     System.out.println("4) Checkout");
                     System.out.println("0) Cancel order");
                     System.out.println("Enter choice: ");
@@ -54,15 +53,19 @@ public class Main {
                         System.out.println("Would you like to add toppings? (yes/no): ");
                         String addToppings = scanner.nextLine();
 
-                        if (addToppings.equalsIgnoreCase("yes")) {
-                            System.out.println("Enter toppings:");
+                        if (addToppings.equalsIgnoreCase("yes")){
+                            boolean addingToppings = true;
 
-                            String toppingsInput = scanner.nextLine();
-                            String[] toppings = toppingsInput.split(",");
-                            for (String topping : toppings) {
-                                pizza.addTopping(topping);
+                            System.out.println("\n Toppings Menu:");
+                            System.out.println("Meats - Pepperoni, Sausage, Ham, Bacon, Chicken, Meatball");
+                            System.out.println("Cheese - Mozzarella, Parmesan, Ricotta, Goat Cheese, Buffalo");
+
+                            while (addingToppings) {
+                                System.out.println("Enter topping: ");
+                                String topping =
                             }
                         }
+
 
                         order.addPizza(pizza);
                         System.out.println("Pizza added successfully!");

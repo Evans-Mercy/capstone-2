@@ -35,7 +35,7 @@ public class Pizza {
                     if (extra) {
                         price += 1.50;
                     } else {
-                        price += 1.00;
+                        price += 1.00; //regular
                     }
                 } else if (size.equals("12\"")) {
                     if (extra) {
