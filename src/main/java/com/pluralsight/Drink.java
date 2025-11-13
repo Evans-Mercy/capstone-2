@@ -34,8 +34,8 @@ public class Drink {
 
     //summary
     public String getSummary() {
-        String summary = size + " - " + flavor + " $" + getPrice();
-        return summary;
+        return size + " - " + flavor + " $" + getPrice();
+
     }
 
     //Display drink
