@@ -128,7 +128,9 @@ public class Main {
                     } else if (orderChoice.equals("4")) {
                         //checkout
                         System.out.println("\n Please confirm your order:");
-                        order.displayOrder();
+                        System.out.println(order.generateReceipt());
+                        order.saveReceipt();
+                        order.saveOrderToCSV("order.csv");
                         ordering = false;
 
                     } else if (orderChoice.equals("0")) {
