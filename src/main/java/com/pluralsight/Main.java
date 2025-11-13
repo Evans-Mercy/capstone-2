@@ -29,7 +29,8 @@ public class Main {
                     System.out.println("1) Add Pizza");
                     System.out.println("2) Add Drink");
                     System.out.println("3) Add Garlic Knots");
-                    System.out.println("4) Checkout");
+                    System.out.println("4) Remove an Item");
+                    System.out.println("5) Checkout");
                     System.out.println("0) Cancel order");
                     System.out.println("Enter choice: ");
                     String orderChoice = scanner.nextLine();
@@ -101,7 +102,7 @@ public class Main {
                             }
                         }
 
-                        order.addPizza(pizza);
+                        order.addItem(pizza);
                         System.out.println("Pizza added successfully!");
 
                     } else if (orderChoice.equals("2")) {
@@ -113,7 +114,7 @@ public class Main {
                         String drinkFlavor = scanner.nextLine();
 
                         Drink drink = new Drink(drinkSize, drinkFlavor);
-                        order.addDrink(drink);
+                        order.addItem(drink);
                         System.out.println("Drink added successfully!");
 
                     } else if (orderChoice.equals("3")) {
@@ -122,15 +123,18 @@ public class Main {
 
                         if (scanner.nextLine().equalsIgnoreCase("yes")) {
                             GarlicKnots gk = new GarlicKnots();
-                            order.addGarlicKnots(gk);
+                            order.addItem(gk);
                             System.out.println("Garlic Knots added successfully!");
+
+                        } else if (orderChoice.equals("4")) {
+                            order.removeItem();
                         }
-                    } else if (orderChoice.equals("4")) {
+                    } else if (orderChoice.equals("5")) {
                         //checkout
                         System.out.println("\n Please confirm your order:");
                         System.out.println(order.generateReceipt());
                         order.saveReceipt();
-                        order.saveOrderToCSV("order.csv");
+                        order.saveOrderToCSV("src/main/resources/order.csv");
                         ordering = false;
 
                     } else if (orderChoice.equals("0")) {
@@ -321,7 +325,7 @@ public class Main {
             System.out.println("Choose a side:");
             String sideChoice = scanner.nextLine();
 
-            if (sideChoice.equals("0")){
+            if (sideChoice.equals("0")) {
                 addingSides = false;
             } else {
                 String side = "";

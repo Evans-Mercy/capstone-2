@@ -1,10 +1,11 @@
 package com.pluralsight;
 
-public class Drink {
+public class Drink extends Item {
     private final String size;
     private final String flavor;
 
     public Drink(String size, String flavor) {
+        super("Drink", 0);
         this.size = size;
         this.flavor = flavor;
     }
@@ -33,6 +34,7 @@ public class Drink {
     }
 
     //summary
+    @Override
     public String getSummary() {
         return size + " - " + flavor + " $" + getPrice();
 

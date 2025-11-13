@@ -2,7 +2,7 @@ package com.pluralsight;
 
 import java.util.ArrayList;
 
-public class Pizza {
+public class Pizza extends Item {
     private String size;
     private String crustType;
     private boolean stuffedCrust;
@@ -10,10 +10,27 @@ public class Pizza {
 
 
     public Pizza(String size, String crustType, boolean stuffedCrust) {
+        super("Pizza", 0);
         this.size = size;
         this.crustType = crustType;
         this.stuffedCrust = stuffedCrust;
         this.toppings = new ArrayList<>();
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public String getCrustType() {
+        return crustType;
+    }
+
+    public boolean isStuffedCrust() {
+        return stuffedCrust;
+    }
+
+    public ArrayList<String> getToppings() {
+        return toppings;
     }
 
     //add a topping
@@ -101,6 +118,7 @@ public class Pizza {
     }
 
     //base price for size
+    @Override
     public double getPrice(){
         double price = 0;
 
@@ -124,8 +142,9 @@ public class Pizza {
     }
 
     //pizza summary
+    @Override
     public String getSummary() {
-        String summary = "Pizza Size: " + size + "\n" + "Crust Type: " + crustType + "\n" + "Stuffed Crust: ";
+        String summary = "Size: " + size + "\"" + "\n" + "Crust Type: " + crustType + "\n" + "Stuffed Crust: ";
         if (stuffedCrust) {
             summary += "Yes\n";
         } else {

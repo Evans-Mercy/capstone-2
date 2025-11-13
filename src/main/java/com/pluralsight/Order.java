@@ -5,114 +5,88 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Order {
-    private final ArrayList<Pizza> pizzas;
-    private final ArrayList<Drink> drinks;
-    private final ArrayList<GarlicKnots> garlicKnots;
+    private ArrayList<Item> items = new ArrayList<>();
 
-    public Order() {
-        this.pizzas = new ArrayList<>();
-        this.drinks = new ArrayList<>();
-        this.garlicKnots = new ArrayList<>();
-    }
-
-    //getters
-    public ArrayList<Pizza> getPizzas() {
-        return pizzas;
-    }
-
-    public ArrayList<Drink> getDrinks() {
-        return drinks;
-    }
-
-    public ArrayList<GarlicKnots> getGarlicKnots() {
-        return garlicKnots;
-    }
-
-    //add pizza
-    public void addPizza(Pizza pizza){
-        pizzas.add(pizza);
-    }
-
-    //add drink
-    public void addDrink(Drink drink){
-        drinks.add(drink);
-    }
-
-    //add garlic knots
-    public void addGarlicKnots(GarlicKnots garlicKnot){
-        garlicKnots.add(garlicKnot);
+    public void addItem(Item item) {
+        items.add(item);
     }
 
     //calculate total price
-    public double getTotalPrice(){
+    public double getTotalPrice() {
         double total = 0;
-        for(Pizza p : pizzas) {
-            total += p.getPrice();
-        }
-        for(Drink d : drinks) {
-            total += d.getPrice();
-        }
-        for(GarlicKnots gk : garlicKnots) {
-            total += gk.getPrice();
+        for (Item i : items) {
+            total += i.getPrice();
         }
         return total;
     }
 
     //display order details
-    public String getOrderSummary(){
+    public String getOrderSummary() {
         String summary = "--------------ORDER DETAILS--------------\n";
-        for (Pizza p : pizzas) {
-            summary += p.getSummary() + "\n\n";
+        for (Item i : items) {
+            summary += i.getName() + " - " + i.getSummary() + "\n";
         }
-        for (Drink d : drinks) {
-            summary += d.getSummary() + "\n\n";
 
-        }
-        for (GarlicKnots gk: garlicKnots) {
-            summary += gk.getSummary() + "\n\n";
-        }
         summary += "-----------------------------------------";
         summary += "Total Price: $" + String.format("%.2f", this.getTotalPrice());
 
         return summary;
     }
 
+    //remove Item
+
+    public void removeItem() {
+        if (items.isEmpty()) {
+            System.out.println("Your order is empty!");
+            return;
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the number of the item to remove: ");
+        for (int i = 0; i < items.size(); i++) {
+            System.out.println((i + 1) + ". " + items.get(i).getName() + " - " + items.get(i).getSummary());
+        }
+
+        int choice = scanner.nextInt();
+        if (choice < 1 || choice > items.size()) {
+            System.out.println("Invalid choice.");
+            return;
+        }
+
+        Item removed = items.remove(choice - 1);
+        System.out.println(removed.getName() + " removed from order!");
+    }
+
     //receipt
-    public String generateReceipt(){
+    public String generateReceipt() {
         String receipt = "--------------CHERRY'S PINEAPPLE PIZZA--------------\n";
         receipt += "Order Items:\n";
 
-        for (Pizza p : pizzas) {
-            receipt += "-Pizza: " + p.getSummary() + "\n";
+        for (Item i : items) {
+            receipt += "- " + i.getName() + ": " + i.getSummary() + " ($" + String.format("%.2f", i.getPrice()) + ")\n";
         }
-        for (Drink d : drinks) {
-            receipt += "-Drink: " + d.getSummary() + "\n";
 
-        }
-        for (GarlicKnots gk: garlicKnots) {
-            receipt += "Garlic Knots: " + gk.getSummary() + "\n";
-        }
         receipt += "-----------------------------------------\n";
         receipt += "Total: $" + String.format("%.2f", this.getTotalPrice()) + "\n";
         receipt += "-----------------------------------------\n";
         receipt += "THANK YOU FOR YOUR ORDER!\n";
 
-
-
         return receipt;
     }
 
     //save receipt as a txt file
-    public void saveReceipt(){
-        String fileName = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")) + ".txt";
-        try{
+    public void saveReceipt() {
+        String fileName = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")) + "receipt.txt";
+
+        try {
             FileWriter writer = new FileWriter(fileName);
             writer.write(generateReceipt());
             writer.close();
             System.out.println("Receipt saved to " + fileName + " successfully!");
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Error saving receipt: " + e.getMessage());
         }
     }
@@ -120,30 +94,22 @@ public class Order {
     public void saveOrderToCSV(String filename) {
         try {
             FileWriter writer = new FileWriter(filename);
-            writer.write("Order Type, Details, Price\n");
+            writer.write(String.format("%-15s | %-70s | %-10s%n", "Order Type", "Details", "Price"));
+            writer.write("------------------------------------------------------------------------------\n");
 
-            //pizza
-            for (Pizza p: pizzas) {
-                writer.write(("Pizza,\"" + p.getSummary().replace("\n", "") + "\",") + p.getPrice() + "\n");
+            for (Item i : items) {
+                writer.write(String.format("%-15s | %-70s | $%-10.2f%n", i.getName(), i.getSummary(), i.getPrice()));
             }
 
-            //drinks
-            for (Drink d: drinks) {
-                writer.write(("Drink,\"" + d.getSummary().replace("\n", "") + "\",") + d.getPrice()+ "\n");
-            }
+            writer.write("-------------------------------------------------------------------------------\n");
+            writer.write(String.format("%-15s | %-70s | $%-10.2f%n", "Total", "", this.getTotalPrice()));
 
-            //garlic knots
-            for (GarlicKnots gk: garlicKnots) {
-                writer.write(("Garlic Knots,\"" + gk.getSummary().replace("\n", "") + "\",") + gk.getPrice()+ "\n");
-            }
-
-            //total
-            writer.write(("Total," + this.getTotalPrice() + "\n"));
             writer.close();
             System.out.println("Order saved to " + filename + " successfully!");
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error saving to file: " + e.getMessage());
+            ;
         }
     }
 }
