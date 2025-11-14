@@ -165,7 +165,7 @@ public class Pizza extends Item {
         } else {
             summary += "No\n";
         }
-        summary += "Toppings: " + toppings + "\n" + "Total Price: $" + getPrice() + "\n" + "Pineapple is always included!";
+        summary += "Toppings: " + toppings + "\n" + "Total Price: $" + getPrice() + "\n" + "Pineapple is always included!\n";
         return summary;
     }
     //pizza details
