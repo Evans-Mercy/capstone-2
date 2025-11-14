@@ -35,116 +35,115 @@ public class Main {
                     System.out.println("Enter choice: ");
                     String orderChoice = scanner.nextLine();
 
-                    if (orderChoice.equals("1")) {
-                        //Pizza size
-                        System.out.println("Enter pizza size (8, 12, 16): ");
-                        String size = scanner.nextLine();
+                    switch (orderChoice) {
+                        case "1" -> {
+                            //Pizza size
+                            System.out.println("Enter pizza size (8, 12, 16): ");
+                            String size = scanner.nextLine();
 
-                        //Crust type
-                        System.out.println("Enter crust type (Thin, Regular, Thick, Cauliflower): ");
-                        String crust = scanner.nextLine();
+                            //Crust type
+                            System.out.println("Enter crust type (Thin, Regular, Thick, Cauliflower): ");
+                            String crust = scanner.nextLine();
 
-                        //Stuffed
-                        System.out.println("Would you like stuffed crust? (yes/no): ");
-                        boolean stuffed = scanner.nextLine().equalsIgnoreCase("yes");
+                            //Stuffed
+                            System.out.println("Would you like stuffed crust? (yes/no): ");
+                            boolean stuffed = scanner.nextLine().equalsIgnoreCase("yes");
 
-                        Pizza pizza = new Pizza(size, crust, stuffed);
+                            Pizza pizza = new Pizza(size, crust, stuffed);
 
-                        //ask for toppings
-                        System.out.println("Would you like to add toppings? (yes/no): ");
+                            //ask for toppings
+                            System.out.println("Would you like to add toppings? (yes/no): ");
 
-                        if (scanner.nextLine().equalsIgnoreCase("yes")) {
-                            boolean customizing = true;
-                            while (customizing) {
-                                System.out.println("\nToppings Menu:");
-                                System.out.println("1) Add meat");
-                                System.out.println("2) Add cheese");
-                                System.out.println("3) Add veggie");
-                                System.out.println("4) Add sauce");
-                                System.out.println("5) Add sides");
-                                System.out.println("6) Remove a topping");
-                                System.out.println("7) View Pizza");
-                                System.out.println("8) Done with toppings");
-                                System.out.println("Enter choice: ");
-                                String toppingChoice = scanner.nextLine();
+                            if (scanner.nextLine().equalsIgnoreCase("yes")) {
+                                boolean customizing = true;
+                                while (customizing) {
+                                    System.out.println("\nToppings Menu:");
+                                    System.out.println("1) Add meat");
+                                    System.out.println("2) Add cheese");
+                                    System.out.println("3) Add veggie");
+                                    System.out.println("4) Add sauce");
+                                    System.out.println("5) Add sides");
+                                    System.out.println("6) Remove a topping");
+                                    System.out.println("7) View Pizza");
+                                    System.out.println("8) Done with toppings");
+                                    System.out.println("Enter choice: ");
+                                    String toppingChoice = scanner.nextLine();
 
 
-                                switch (toppingChoice) {
-                                    case "1":
-                                        addMeatToppings(scanner, pizza);
-                                        break;
-                                    case "2":
-                                        addCheeseToppings(scanner, pizza);
-                                        break;
-                                    case "3":
-                                        addVeggieToppings(scanner, pizza);
-                                        break;
-                                    case "4":
-                                        addSauces(scanner, pizza);
-                                        break;
-                                    case "5":
-                                        addSides(scanner, pizza);
-                                        break;
-                                    case "6":
-                                        pizza.displayPizza();
-                                        System.out.println("Enter the exact topping to name to remove:");
-                                        pizza.removeTopping(scanner.nextLine().trim());
-                                        break;
-                                    case "7":
-                                        pizza.displayPizza();
-                                        break;
-                                    case "8":
-                                        customizing = false;
-                                        break;
-                                    default:
-                                        System.out.println("Invalid choice, try again.");
+                                    switch (toppingChoice) {
+                                        case "1":
+                                            addMeatToppings(scanner, pizza);
+                                            break;
+                                        case "2":
+                                            addCheeseToppings(scanner, pizza);
+                                            break;
+                                        case "3":
+                                            addVeggieToppings(scanner, pizza);
+                                            break;
+                                        case "4":
+                                            addSauces(scanner, pizza);
+                                            break;
+                                        case "5":
+                                            addSides(scanner, pizza);
+                                            break;
+                                        case "6":
+                                            pizza.displayPizza();
+                                            System.out.println("Enter the exact topping to name to remove:");
+                                            pizza.removeTopping(scanner.nextLine().trim());
+                                            break;
+                                        case "7":
+                                            pizza.displayPizza();
+                                            break;
+                                        case "8":
+                                            customizing = false;
+                                            break;
+                                        default:
+                                            System.out.println("Invalid choice, try again.");
+                                    }
                                 }
                             }
+
+                            order.addItem(pizza);
+                            System.out.println("Pizza added successfully!");
                         }
+                        case "2" -> {
+                            //add a drink
+                            System.out.println("Enter drink size (Small, Medium, Large): ");
+                            String drinkSize = scanner.nextLine();
 
-                        order.addItem(pizza);
-                        System.out.println("Pizza added successfully!");
+                            System.out.println("Enter drink flavor: ");
+                            String drinkFlavor = scanner.nextLine();
 
-                    } else if (orderChoice.equals("2")) {
-                        //add a drink
-                        System.out.println("Enter drink size (Small, Medium, Large): ");
-                        String drinkSize = scanner.nextLine();
-
-                        System.out.println("Enter drink flavor: ");
-                        String drinkFlavor = scanner.nextLine();
-
-                        Drink drink = new Drink(drinkSize, drinkFlavor);
-                        order.addItem(drink);
-                        System.out.println("Drink added successfully!");
-
-                    } else if (orderChoice.equals("3")) {
-                        //add garlic knots
-                        System.out.println("Would you like to add Garlic Knots? (Yes/No): ");
-
-                        if (scanner.nextLine().equalsIgnoreCase("yes")) {
-                            GarlicKnots gk = new GarlicKnots();
-                            order.addItem(gk);
-                            System.out.println("Garlic Knots added successfully!");
-
+                            Drink drink = new Drink(drinkSize, drinkFlavor);
+                            order.addItem(drink);
+                            System.out.println("Drink added successfully!");
                         }
-                    }else if (orderChoice.equals("4")) {
-                            order.removeItem();
+                        case "3" -> {
+                            //add garlic knots
+                            System.out.println("Would you like to add Garlic Knots? (Yes/No): ");
 
-                    } else if (orderChoice.equals("5")) {
-                        //checkout
-                        System.out.println("\n Please confirm your order:");
-                        System.out.println(order.generateReceipt());
-                        order.saveReceipt();
-                        order.saveOrderToCSV("src/main/resources/order.csv");
-                        ordering = false;
+                            if (scanner.nextLine().equalsIgnoreCase("yes")) {
+                                GarlicKnots gk = new GarlicKnots();
+                                order.addItem(gk);
+                                System.out.println("Garlic Knots added successfully!");
 
-                    } else if (orderChoice.equals("0")) {
-                        //cancel order
-                        System.out.println("Order cancelled.");
-                        ordering = false;
-
-                    } else {
-                        System.out.println("Invalid choice, try again.");
+                            }
+                        }
+                        case "4" -> order.removeItem();
+                        case "5" -> {
+                            //checkout
+                            System.out.println("\n Please confirm your order:");
+                            System.out.println(order.generateReceipt());
+                            order.saveReceipt();
+                            order.saveOrderToCSV("src/main/resources/order.csv");
+                            ordering = false;
+                        }
+                        case "0" -> {
+                            //cancel order
+                            System.out.println("Order cancelled.");
+                            ordering = false;
+                        }
+                        default -> System.out.println("Invalid choice, try again.");
                     }
 
                 }
@@ -178,15 +177,17 @@ public class Main {
                 addingMeats = false;
             } else {
                 String meat;
-                if (meatChoice.equals("1")) meat = "Pepperoni";
-                else if (meatChoice.equals("2")) meat = "Sausage";
-                else if (meatChoice.equals("3")) meat = "Ham";
-                else if (meatChoice.equals("4")) meat = "Bacon";
-                else if (meatChoice.equals("5")) meat = "Chicken";
-                else if (meatChoice.equals("6")) meat = "Meatball";
-                else {
-                    System.out.println("Invalid choice, try again.");
-                    continue;
+                switch (meatChoice) {
+                    case "1" -> meat = "Pepperoni";
+                    case "2" -> meat = "Sausage";
+                    case "3" -> meat = "Ham";
+                    case "4" -> meat = "Bacon";
+                    case "5" -> meat = "Chicken";
+                    case "6" -> meat = "Meatball";
+                    default -> {
+                        System.out.println("Invalid choice, try again.");
+                        continue;
+                    }
                 }
 
                 System.out.println("Extra " + meat + "? (yes/no): ");
@@ -219,14 +220,16 @@ public class Main {
                 addingCheese = false;
             } else {
                 String cheese;
-                if (cheeseChoice.equals("1")) cheese = "Mozzarella";
-                else if (cheeseChoice.equals("2")) cheese = "Parmesan";
-                else if (cheeseChoice.equals("3")) cheese = "Ricotta";
-                else if (cheeseChoice.equals("4")) cheese = "Goat Cheese";
-                else if (cheeseChoice.equals("5")) cheese = "Buffalo Cheese";
-                else {
-                    System.out.println("Invalid choice, try again.");
-                    continue;
+                switch (cheeseChoice) {
+                    case "1" -> cheese = "Mozzarella";
+                    case "2" -> cheese = "Parmesan";
+                    case "3" -> cheese = "Ricotta";
+                    case "4" -> cheese = "Goat Cheese";
+                    case "5" -> cheese = "Buffalo Cheese";
+                    default -> {
+                        System.out.println("Invalid choice, try again.");
+                        continue;
+                    }
                 }
 
                 System.out.println("Extra " + cheese + "? (yes/no): ");
@@ -263,18 +266,20 @@ public class Main {
                 addingVeggie = false;
             } else {
                 String veggie;
-                if (veggieChoice.equals("1")) veggie = "Onions";
-                else if (veggieChoice.equals("2")) veggie = "Mushroom";
-                else if (veggieChoice.equals("3")) veggie = "Bell Peppers";
-                else if (veggieChoice.equals("4")) veggie = "Olives";
-                else if (veggieChoice.equals("5")) veggie = "Tomatoes";
-                else if (veggieChoice.equals("6")) veggie = "Spinach";
-                else if (veggieChoice.equals("7")) veggie = "Basil";
-                else if (veggieChoice.equals("8")) veggie = "Pineapple";
-                else if (veggieChoice.equals("9")) veggie = "Anchovies";
-                else {
-                    System.out.println("Invalid choice, try again.");
-                    continue;
+                switch (veggieChoice) {
+                    case "1" -> veggie = "Onions";
+                    case "2" -> veggie = "Mushroom";
+                    case "3" -> veggie = "Bell Peppers";
+                    case "4" -> veggie = "Olives";
+                    case "5" -> veggie = "Tomatoes";
+                    case "6" -> veggie = "Spinach";
+                    case "7" -> veggie = "Basil";
+                    case "8" -> veggie = "Pineapple";
+                    case "9" -> veggie = "Anchovies";
+                    default -> {
+                        System.out.println("Invalid choice, try again.");
+                        continue;
+                    }
                 }
                 pizza.addTopping(veggie);
             }
@@ -300,15 +305,17 @@ public class Main {
                 addingSauces = false;
             } else {
                 String sauce;
-                if (sauceChoice.equals("1")) sauce = "Marinara";
-                else if (sauceChoice.equals("2")) sauce = "Alfredo";
-                else if (sauceChoice.equals("3")) sauce = "Pesto";
-                else if (sauceChoice.equals("4")) sauce = "BBQ";
-                else if (sauceChoice.equals("5")) sauce = "Buffalo";
-                else if (sauceChoice.equals("6")) sauce = "Olive Oil";
-                else {
-                    System.out.println("Invalid choice, try again.");
-                    continue;
+                switch (sauceChoice) {
+                    case "1" -> sauce = "Marinara";
+                    case "2" -> sauce = "Alfredo";
+                    case "3" -> sauce = "Pesto";
+                    case "4" -> sauce = "BBQ";
+                    case "5" -> sauce = "Buffalo";
+                    case "6" -> sauce = "Olive Oil";
+                    default -> {
+                        System.out.println("Invalid choice, try again.");
+                        continue;
+                    }
                 }
                 pizza.addTopping(sauce);
             }
