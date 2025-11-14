@@ -66,8 +66,7 @@ public class Order {
         receipt.append("Order Items:\n");
 
         for (Item i : items) {
-            receipt.append("- ").append(i.getName()).append(": ").append(i.getSummary());
-//            receipt.append(" ($").append(String.format("%.2f", i.getPrice())).append(")\n");
+            receipt.append("- ").append(i.getName()).append(": ").append(i.getSummary()).append("\n");
         }
 
         receipt.append("---------------------------------------------------------------------------\n");

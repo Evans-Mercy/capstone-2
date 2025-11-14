@@ -16,6 +16,6 @@ public class GarlicKnots extends Item{
     //summary
     @Override
     public String getSummary() {
-        return "Garlic Knots - $" + getPrice();
+        return "Garlic Knots - $" + String.format("%.2f",getPrice());
     }
 }

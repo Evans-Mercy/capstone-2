@@ -36,7 +36,7 @@ public class Drink extends Item {
     //summary
     @Override
     public String getSummary() {
-        return size + " - " + flavor + " $" + getPrice();
+        return size + " - " + flavor + " $" + String.format("%.2f",getPrice());
 
     }
 }
