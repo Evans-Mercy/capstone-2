@@ -6,8 +6,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Cherry's Pineapple Pizza House!");
-        System.out.println("Welcome to the only Pineapple pizza shop in Texas! Let's get you a pineapple pizza!!");
+        System.out.println("Welcome to Cherry's Pineapple Pizza House!");
+        System.out.println("Every pizza comes with pineapple. No exceptions!!");
 
         boolean running = true;
 

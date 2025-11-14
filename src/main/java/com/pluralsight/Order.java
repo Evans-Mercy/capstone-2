@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Order {
-    private ArrayList<Item> items = new ArrayList<>();
+    private final ArrayList<Item> items = new ArrayList<>();
 
     public void addItem(Item item) {
         items.add(item);
@@ -62,19 +62,20 @@ public class Order {
 
     //receipt
     public String generateReceipt() {
-        String receipt = "--------------CHERRY'S PINEAPPLE PIZZA--------------\n";
-        receipt += "Order Items:\n";
+        StringBuilder receipt = new StringBuilder("--------------CHERRY'S PINEAPPLE PIZZA--------------\n");
+        receipt.append("Order Items:\n");
 
         for (Item i : items) {
-            receipt += "- " + i.getName() + ": " + i.getSummary() + " ($" + String.format("%.2f", i.getPrice()) + ")\n";
+            receipt.append("- ").append(i.getName()).append(": ").append(i.getSummary());
+            receipt.append(" ($").append(String.format("%.2f", i.getPrice())).append(")\n");
         }
 
-        receipt += "-----------------------------------------\n";
-        receipt += "Total: $" + String.format("%.2f", this.getTotalPrice()) + "\n";
-        receipt += "-----------------------------------------\n";
-        receipt += "THANK YOU FOR YOUR ORDER!\n";
+        receipt.append("---------------------------------------------------------------------------\n");
+        receipt.append("Total: $").append(String.format("%.2f", this.getTotalPrice())).append("\n");
+        receipt.append("---------------------------------------------------------------------------\n");
+        receipt.append("THANK YOU FOR YOUR ORDER! ENJOY AND PLEASE LEAVE A REVIEW. SEE YOU SOON :) \n");
 
-        return receipt;
+        return receipt.toString();
     }
 
     //save receipt as a txt file
@@ -109,7 +110,6 @@ public class Order {
 
         } catch (IOException e) {
             System.out.println("Error saving to file: " + e.getMessage());
-            //heyy
         }
     }
 }

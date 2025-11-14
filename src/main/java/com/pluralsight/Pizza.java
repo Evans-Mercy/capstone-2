@@ -3,10 +3,12 @@ package com.pluralsight;
 import java.util.ArrayList;
 
 public class Pizza extends Item {
-    private String size;
-    private String crustType;
-    private boolean stuffedCrust;
-    private ArrayList<String> toppings;
+    private final String size;
+    private final String crustType;
+    private final boolean stuffedCrust;
+    private final ArrayList<String> toppings;
+
+    private final boolean hasPineapple;
 
 
     public Pizza(String size, String crustType, boolean stuffedCrust) {
@@ -15,6 +17,9 @@ public class Pizza extends Item {
         this.crustType = crustType;
         this.stuffedCrust = stuffedCrust;
         this.toppings = new ArrayList<>();
+
+        this.hasPineapple = true;
+        this.toppings.add("Pineapple");
     }
 
     public String getSize() {
@@ -44,6 +49,10 @@ public class Pizza extends Item {
 
     //remove a topping
     public void removeTopping(String  topping) {
+        if (topping.equalsIgnoreCase("Pineapple")) {
+            System.out.println("Sorry, pineapple cannot be removed!");
+            return;
+        }
         topping = topping.trim();
         boolean removed = false;
 
@@ -65,51 +74,60 @@ public class Pizza extends Item {
         double price = 0;
 
         for (String t : toppings) {
+            if(t.equalsIgnoreCase("Pineapple")) continue;
 
             //extra topping
             boolean extra = t.contains("extra");
 
             //meat toppings
             if (t.equalsIgnoreCase("pepperoni") || t.equalsIgnoreCase("sausage") || t.equalsIgnoreCase("ham") || t.equalsIgnoreCase("bacon") || t.equalsIgnoreCase("chicken") || t.equalsIgnoreCase("meatball")) {
-                if (size.equals("8")) {
-                    if (extra) {
-                        price += 1.50;
-                    } else {
-                        price += 1.00; //regular
+                switch (size) {
+                    case "8" -> {
+                        if (extra) {
+                            price += 1.50;
+                        } else {
+                            price += 1.00; //regular
+                        }
                     }
-                } else if (size.equals("12")) {
-                    if (extra) {
-                        price += 3.00;
-                    } else {
-                        price += 2.00;
+                    case "12" -> {
+                        if (extra) {
+                            price += 3.00;
+                        } else {
+                            price += 2.00;
+                        }
                     }
-                } else if (size.equals("16")) {
-                    if (extra) {
-                        price += 4.50;
-                    } else {
-                        price += 3.00;
+                    case "16" -> {
+                        if (extra) {
+                            price += 4.50;
+                        } else {
+                            price += 3.00;
+                        }
                     }
                 }
 
                 //cheese toppings
             } else if (t.equalsIgnoreCase("mozzarella") || t.equalsIgnoreCase("parmesan") || t.equalsIgnoreCase("ricotta") || t.equalsIgnoreCase("goat cheese") || t.equalsIgnoreCase("buffalo")) {
-                if (size.equals("8")) {
-                    if (extra) {
-                        price += 0.30;
-                    } else {
-                        price += 0.75;
+                switch (size) {
+                    case "8" -> {
+                        if (extra) {
+                            price += 0.30;
+                        } else {
+                            price += 0.75;
+                        }
                     }
-                } else if (size.equals("12")) {
-                    if (extra) {
-                        price += 0.60;
-                    } else {
-                        price += 1.50;
+                    case "12" -> {
+                        if (extra) {
+                            price += 0.60;
+                        } else {
+                            price += 1.50;
+                        }
                     }
-                } else if (size.equals("16")) {
-                    if (extra) {
-                        price += 0.90;
-                    } else {
-                        price += 2.25;
+                    case "16" -> {
+                        if (extra) {
+                            price += 0.90;
+                        } else {
+                            price += 2.25;
+                        }
                     }
                 }
             }
@@ -120,15 +138,12 @@ public class Pizza extends Item {
     //base price for size
     @Override
     public double getPrice(){
-        double price = 0;
-
-        if(size.equals("8")){
-            price = 8.50;
-        } else if (size.equals("12")) {
-            price = 12.00;
-        } else if (size.equals("16")) {
-            price = 16.50;
-        }
+        double price = switch (size) {
+            case "8" -> 8.50;
+            case "12" -> 12.00;
+            case "16" -> 16.50;
+            default -> 0;
+        };
 
         //stuffed crust
         if (stuffedCrust) {
@@ -150,7 +165,7 @@ public class Pizza extends Item {
         } else {
             summary += "No\n";
         }
-        summary += "Toppings: " + toppings + "\n" + "Total Price: $" + getPrice();
+        summary += "Toppings: " + toppings + "\n" + "Total Price: $" + getPrice() + "\n" + "Pineapple is always included!";
         return summary;
     }
     //pizza details
