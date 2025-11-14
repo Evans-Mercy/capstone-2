@@ -82,7 +82,7 @@ public class Order {
         String fileName = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")) + ".txt";
 
         try {
-            FileWriter writer = new FileWriter(fileName);
+            FileWriter writer = new FileWriter("src/main/resources/" + fileName);
             writer.write(generateReceipt());
             writer.close();
             System.out.println("Receipt saved to " + fileName + " successfully!");

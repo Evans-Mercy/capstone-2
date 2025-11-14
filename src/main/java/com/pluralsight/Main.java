@@ -134,7 +134,7 @@ public class Main {
                         System.out.println("\n Please confirm your order:");
                         System.out.println(order.generateReceipt());
                         order.saveReceipt();
-                        order.saveOrderToCSV("resources/order.csv");
+                        order.saveOrderToCSV("src/main/resources/order.csv");
                         ordering = false;
 
                     } else if (orderChoice.equals("0")) {
