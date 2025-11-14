@@ -45,17 +45,11 @@ The ultimate pineapple pizza enthusiast.
 5. Checkout to see a fancy receipt with all your delicious choices.
 
 ---
-## Diagram structure
-
-
----
-
 ## Sample Receipt
 ![](src\images\receipt.png)
 ---------------------------------------------------------------------------
 
 ---
-
 ## Challenges
 
 Mandatory pineapple rule: Making sure every pizza always has pineapple and can’t be removed. It took a little thinking to handle this cleanly without breaking the topping system. 
@@ -90,7 +84,10 @@ How to think like a small business programmer; handling orders, calculating pric
 
 # Acknowledgements
 
-### I'd like to thank Kavon & Michael for helping me debug, without them, I'd probably still be stuck in an infinite loop somewhere! 
-### Big thanks to my dog Winter, who bravely sacrificed all her playtime to keep me company while I coded.
-### Shoutout to my peers for keeping me somewhat focused when I wanted to take a nap.
-### And of course, thanks to my instructor for the lessons and my coaches for being here to support.
+**I'd like to thank Kavon & Michael for helping me debug, without them, I'd probably still be stuck in an infinite loop somewhere!**
+
+**Big thanks to my dog Winter, who bravely sacrificed all her playtime to keep me company while I coded.**
+
+**Shoutout to my peers for keeping me somewhat focused when I wanted to take a nap.**
+
+**And of course, thanks to my instructor for the lessons and my coaches for being here to support.**
