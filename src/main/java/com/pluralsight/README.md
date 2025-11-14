@@ -46,6 +46,7 @@ The ultimate pineapple pizza enthusiast.
 
 ---
 ## Sample Receipt
+
 ![](src\images\receipt.png)
 ---------------------------------------------------------------------------
 

@@ -62,7 +62,7 @@ public class Order {
 
     //receipt
     public String generateReceipt() {
-        StringBuilder receipt = new StringBuilder("--------------CHERRY'S PINEAPPLE PIZZA--------------\n");
+        StringBuilder receipt = new StringBuilder("--------------CHERRY'S PINEAPPLE PIZZA - PINEAPPLE FOREVER!--------------\n");
         receipt.append("Order Items:\n");
 
         for (Item i : items) {
