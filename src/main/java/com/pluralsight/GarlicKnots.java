@@ -18,10 +18,4 @@ public class GarlicKnots extends Item{
     public String getSummary() {
         return "Garlic Knots - $" + getPrice();
     }
-
-    //display
-    public void displayGarlicKnots() {
-        System.out.println(getSummary());
-    }
-
 }

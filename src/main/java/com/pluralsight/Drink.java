@@ -39,10 +39,5 @@ public class Drink extends Item {
         return size + " - " + flavor + " $" + getPrice();
 
     }
-
-    //Display drink
-    public void displayDrink() {
-        System.out.println(getSummary());
-    }
 }
 
