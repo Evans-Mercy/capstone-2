@@ -79,7 +79,7 @@ public class Order {
 
     //save receipt as a txt file
     public void saveReceipt() {
-        String fileName = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")) + "receipt.txt";
+        String fileName = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")) + ".txt";
 
         try {
             FileWriter writer = new FileWriter(fileName);
