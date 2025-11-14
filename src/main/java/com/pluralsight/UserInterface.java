@@ -286,6 +286,7 @@ public class UserInterface {
         }
     }
 
+    //adding sauces
     private static void addSauces(Scanner scanner, Pizza pizza) {
         boolean addingSauces = true;
         while (addingSauces) {
@@ -322,7 +323,7 @@ public class UserInterface {
         }
     }
 
-    //sides
+    //adding sides
     private static void addSides(Scanner scanner, Pizza pizza) {
         boolean addingSides = true;
         while (addingSides) {
