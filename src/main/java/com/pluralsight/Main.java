@@ -126,9 +126,10 @@ public class Main {
                             order.addItem(gk);
                             System.out.println("Garlic Knots added successfully!");
 
-                        } else if (orderChoice.equals("4")) {
-                            order.removeItem();
                         }
+                    }else if (orderChoice.equals("4")) {
+                            order.removeItem();
+
                     } else if (orderChoice.equals("5")) {
                         //checkout
                         System.out.println("\n Please confirm your order:");
@@ -176,7 +177,7 @@ public class Main {
             if (meatChoice.equals("0")) {
                 addingMeats = false;
             } else {
-                String meat = "";
+                String meat;
                 if (meatChoice.equals("1")) meat = "Pepperoni";
                 else if (meatChoice.equals("2")) meat = "Sausage";
                 else if (meatChoice.equals("3")) meat = "Ham";
@@ -217,7 +218,7 @@ public class Main {
             if (cheeseChoice.equals("0")) {
                 addingCheese = false;
             } else {
-                String cheese = "";
+                String cheese;
                 if (cheeseChoice.equals("1")) cheese = "Mozzarella";
                 else if (cheeseChoice.equals("2")) cheese = "Parmesan";
                 else if (cheeseChoice.equals("3")) cheese = "Ricotta";
@@ -261,7 +262,7 @@ public class Main {
             if (veggieChoice.equals("0")) {
                 addingVeggie = false;
             } else {
-                String veggie = "";
+                String veggie;
                 if (veggieChoice.equals("1")) veggie = "Onions";
                 else if (veggieChoice.equals("2")) veggie = "Mushroom";
                 else if (veggieChoice.equals("3")) veggie = "Bell Peppers";
@@ -298,7 +299,7 @@ public class Main {
             if (sauceChoice.equals("0")) {
                 addingSauces = false;
             } else {
-                String sauce = "";
+                String sauce;
                 if (sauceChoice.equals("1")) sauce = "Marinara";
                 else if (sauceChoice.equals("2")) sauce = "Alfredo";
                 else if (sauceChoice.equals("3")) sauce = "Pesto";
@@ -328,7 +329,7 @@ public class Main {
             if (sideChoice.equals("0")) {
                 addingSides = false;
             } else {
-                String side = "";
+                String side;
                 if (sideChoice.equals(("1"))) {
                     side = "Red Pepper";
                 } else if (sideChoice.equals("2")) {
